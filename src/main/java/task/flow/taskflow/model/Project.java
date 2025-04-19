@@ -11,6 +11,8 @@ public class Project {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(unique = true)
     private String project_name;
 
     @Column(name = "password_hash")
@@ -19,8 +21,4 @@ public class Project {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "creator_id")
     private Participant creator;
-
-    public void setPassword(String password) {
-        this.passwordHash = PasswordUtil.hashPassword(password);
-    }
 }
