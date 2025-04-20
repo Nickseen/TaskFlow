@@ -21,4 +21,7 @@ public class Project {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "creator_id")
     private Participant creator;
+
+    @Transient
+    private transient String password;
 }

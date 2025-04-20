@@ -11,4 +11,5 @@ public interface ProjectRepository extends JpaRepository<Project, Long> {
     @Query("SELECT p FROM Project p JOIN p.creator c WHERE c.email = :email")
     List<Project> findByCreatorEmail(@Param("email") String email);
     void deleteByName(String project_name);
+    Project findByName(String project_name);
 }
