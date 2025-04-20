@@ -46,9 +46,8 @@ public class ProjectServiceImpl implements ProjectService {
 
     @Override
     @Transactional
-    public Project updateProject(Project project, String project_name) {
-        Project existingProject = repository.findByName(project_name);
-        return repository.save(existingProject);
+    public Project updateProject(Project project) {
+        return repository.save(project);
     }
 
     @Override
