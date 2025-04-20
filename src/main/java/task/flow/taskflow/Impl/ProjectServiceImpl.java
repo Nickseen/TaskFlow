@@ -34,13 +34,13 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
-    public Project findByName(String project_name) {
+    public Project findProject(String project_name) {
         return repository.findByName(project_name);
     }
 
     @Override
     @Transactional
-    public void deleteByName(String project_name) {
+    public void deleteProject(String project_name) {
         repository.deleteByName(project_name);
     }
 

@@ -8,8 +8,8 @@ public interface ProjectService {
     List<Project> findAllProjects();
     List<Project> findByCreatorEmail(String email);
     Project saveProject(Project project);
-    Project findByName(String project_name);
-    void deleteByName(String project_name);
+    Project findProject(String project_name);
+    void deleteProject(String project_name);
     Project updateProject(Project project);
     boolean validateProjectPassword(String project_name, String password);
 

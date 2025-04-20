@@ -27,9 +27,9 @@ public class ProjectController {
         return service.findByCreatorEmail(email);
     }
 
-    @GetMapping("/{project_name}")
-    public Project findByName(@PathVariable("project_name") String project_name) {
-        return service.findByName(project_name);
+    @GetMapping("/{name}")
+    public Project findByName(@PathVariable("name") String project_name) {
+        return service.findProject(project_name);
     }
 
     @PostMapping("/save_project")
@@ -37,9 +37,9 @@ public class ProjectController {
         return service.saveProject(project);
     }
 
-    @DeleteMapping("/delete_project/{project_name}")
-    public void deleteByName(@PathVariable("project_name") String project_name) {
-        service.deleteByName(project_name);
+    @DeleteMapping("/delete_project/{name}")
+    public void deleteByName(@PathVariable("name") String project_name) {
+        service.deleteProject(project_name);
     }
 
     @PutMapping("/update_project")
@@ -47,8 +47,8 @@ public class ProjectController {
         return service.updateProject(project);
     }
 
-    @GetMapping("/validate_password/{project_name}/{password}")
-    public boolean validateProjectPassword(@PathVariable("project_name") String project_name, @PathVariable("password") String password) {
+    @GetMapping("/validate_password/{name}/{password}")
+    public boolean validateProjectPassword(@PathVariable("name") String project_name, @PathVariable("password") String password) {
         return service.validateProjectPassword(project_name, password);
     }
 }

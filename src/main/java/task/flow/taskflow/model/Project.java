@@ -13,12 +13,12 @@ public class Project {
     private Long id;
 
     @Column(unique = true)
-    private String project_name;
+    private String name;
 
     @Column(name = "password_hash")
     private String passwordHash;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "creator_id")
     private Participant creator;
 
