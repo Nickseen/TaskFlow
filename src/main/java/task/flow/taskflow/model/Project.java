@@ -2,7 +2,10 @@ package task.flow.taskflow.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
-import task.flow.taskflow.utility.PasswordUtil;
+
+
+import java.util.HashSet;
+import java.util.Set;
 
 @Data
 @Entity
@@ -24,4 +27,7 @@ public class Project {
 
     @Transient
     private transient String password;
+
+    @OneToMany(mappedBy = "project", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Member> members = new HashSet<>();
 }

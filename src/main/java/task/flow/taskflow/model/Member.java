@@ -8,10 +8,6 @@ import lombok.Data;
 @Table(name = "members")
 public class Member {
 
-    public enum Role {
-        OWNER, ADMIN, MEMBER, GUEST
-    }
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -26,6 +22,6 @@ public class Member {
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private Role role;
+    private ProjectRole role;
 
 }
