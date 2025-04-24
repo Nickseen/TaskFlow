@@ -1,5 +1,7 @@
 package task.flow.taskflow.model;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -10,6 +12,7 @@ import java.util.Set;
 @Data
 @Entity
 @Table(name = "projects")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Project {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -1,11 +1,14 @@
 package task.flow.taskflow.model;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import lombok.Data;
 
 @Data
 @Entity
 @Table(name = "members")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Member {
 
     @Id
@@ -21,7 +24,6 @@ public class Member {
     private Participant participant;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
     private ProjectRole role;
 
 }
