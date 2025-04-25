@@ -9,7 +9,7 @@ public interface MemberService {
     List<Member> findMembersByProjectName(String project_name);
     List<Member> findMembersByProjectNameAndRole(String project_name, ProjectRole role);
     Member findMemberByProjectAndParticipant(String project_name, String email);
-    Member saveMember(Member member);
-    Member updateMemberRole(Member member);
+    Member saveMember(String projectName, String email, ProjectRole role);
+    Member updateMemberRole(String projectName, String email, ProjectRole newRole);
     void removeMember(String project_name, String email);
 }

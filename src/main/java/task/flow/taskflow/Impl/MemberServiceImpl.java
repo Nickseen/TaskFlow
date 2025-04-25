@@ -39,22 +39,32 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     @Transactional
-    public Member saveMember(Member member) {
-        Project project = projectRepository.findByName(member.getProject().getName());
-        Participant participant = participantRepository.findParticipantsByEmail(member.getParticipant().getEmail());
+    public Member saveMember(String project_name, String email, ProjectRole role) {
+        Project project = projectRepository.findByName(project_name);
+        Participant participant = participantRepository.findParticipantsByEmail(email);
 
-        if (project == null || participant == null) {
-            throw new EntityNotFoundException("Project or Participant not found");
+        Member member = new Member();
+        member.setProject(project);
+        member.setParticipant(participant);
+        member.setRole(role);
+
+        return repository.save(member);
+    }
+
+    @Override
+    @Transactional
+    public Member updateMemberRole(String project_name, String email, ProjectRole newRole) {
+        Member member = repository.findByProjectNameAndParticipantEmail(project_name, email);
+        if (member != null) {
+            member.setRole(newRole);
+            return repository.save(member);
         }
-        return repository.save(member);
+        return null;
     }
 
-    @Override
-    public Member updateMemberRole(Member member) {
-        return repository.save(member);
-    }
 
     @Override
+    @Transactional
     public void removeMember(String project_name, String email) {
         repository.deleteByProjectNameAndParticipantEmail(project_name, email);
     }

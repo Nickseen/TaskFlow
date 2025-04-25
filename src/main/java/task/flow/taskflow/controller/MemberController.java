@@ -8,11 +8,13 @@ import task.flow.taskflow.model.ProjectRole;
 import task.flow.taskflow.service.MemberService;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/v1/members")
 public class MemberController {
     private final MemberService service;
+
 
     @Autowired
     public MemberController(MemberService service) {
@@ -39,13 +41,19 @@ public class MemberController {
     }
 
     @PostMapping("/add_member")
-    public Member saveMember(@RequestBody Member member) {
-        return service.saveMember(member);
+    public Member addMember(@RequestBody Map<String, String> request) {
+        String project_name = request.get("project_name");
+        String email = request.get("email");
+        ProjectRole role = ProjectRole.valueOf(request.get("role"));
+        return service.saveMember(project_name, email, role);
     }
 
-    @PutMapping("/update_role")
-    public Member updateMemberRole(@RequestBody Member member) {
-        return service.saveMember(member);
+    @PutMapping("/update/{project_name}/{email}/{role}")
+    public Member updateMemberRole(
+            @PathVariable("project_name") String project_name,
+            @PathVariable("email") String email,
+            @PathVariable("role") ProjectRole newRole) {
+        return service.updateMemberRole(project_name, email, newRole);
     }
 
     @DeleteMapping("/remove/{project_name}/{email}")

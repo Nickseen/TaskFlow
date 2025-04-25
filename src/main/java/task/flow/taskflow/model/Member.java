@@ -1,14 +1,15 @@
 package task.flow.taskflow.model;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "members")
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+@Table( name = "members",
+        uniqueConstraints = {
+        @UniqueConstraint(columnNames = {"project_id", "participant_id"})
+})
 public class Member {
 
     @Id
@@ -17,6 +18,7 @@ public class Member {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "project_id")
+    @JsonIgnore
     private Project project;
 
     @ManyToOne(fetch = FetchType.EAGER)
