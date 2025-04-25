@@ -1,7 +1,13 @@
 package task.flow.taskflow.model;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @Data
 @Entity
@@ -18,6 +24,10 @@ public class Participant {
     private String email;
 
     private String role;
+
+    @OneToMany(mappedBy = "participant", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
+    private Set<Member> projects = new HashSet<>();
 
 
 }
