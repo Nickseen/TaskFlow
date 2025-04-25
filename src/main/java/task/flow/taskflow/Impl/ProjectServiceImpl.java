@@ -4,6 +4,9 @@ import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import task.flow.taskflow.model.Project;
+import task.flow.taskflow.model.Member;
+import task.flow.taskflow.model.ProjectRole;
+import task.flow.taskflow.repository.MemberRepository;
 import task.flow.taskflow.repository.ProjectRepository;
 import task.flow.taskflow.service.ProjectService;
 import task.flow.taskflow.utility.PasswordUtil;
@@ -14,6 +17,7 @@ import java.util.List;
 @AllArgsConstructor
 public class ProjectServiceImpl implements ProjectService {
     private final ProjectRepository repository;
+    private final MemberRepository memberRepository;
 
     @Override
     public List<Project> findAllProjects() {
@@ -30,7 +34,17 @@ public class ProjectServiceImpl implements ProjectService {
     public Project saveProject(Project project) {
         project.setPasswordHash(PasswordUtil.hashPassword(project.getPassword()));
         project.setPassword(null);
-        return repository.save(project);
+
+        Project savedProject = repository.save(project);
+
+        Member ownerMember = new Member();
+        ownerMember.setProject(savedProject);
+        ownerMember.setParticipant(project.getCreator());
+        ownerMember.setRole(ProjectRole.OWNER);
+
+        memberRepository.save(ownerMember);
+
+        return savedProject;
     }
 
     @Override
