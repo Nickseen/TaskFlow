@@ -30,8 +30,4 @@ public class Project {
 
     @Transient
     private transient String password;
-
-    @OneToMany(mappedBy = "project", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonIgnore
-    private Set<Member> members = new HashSet<>();
 }
