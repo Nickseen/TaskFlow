@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import task.flow.taskflow.model.Member;
-import task.flow.taskflow.model.ProjectRole;
+import task.flow.taskflow.model.enums.ProjectRole;
 
 import java.util.List;
 

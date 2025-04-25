@@ -3,6 +3,7 @@ package task.flow.taskflow.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
+import task.flow.taskflow.model.enums.ProjectRole;
 
 @Data
 @Entity
