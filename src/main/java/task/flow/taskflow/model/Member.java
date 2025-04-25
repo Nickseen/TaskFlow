@@ -5,6 +5,9 @@ import jakarta.persistence.*;
 import lombok.Data;
 import task.flow.taskflow.model.enums.ProjectRole;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Data
 @Entity
 @Table( name = "members",
@@ -29,4 +32,7 @@ public class Member {
     @Enumerated(EnumType.STRING)
     private ProjectRole role;
 
+    @ManyToMany(mappedBy = "members")
+    @JsonIgnore
+    private Set<Issue> issues = new HashSet<>();
 }
