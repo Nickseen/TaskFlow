@@ -33,11 +33,11 @@ public class Issue {
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private IssueStatus status = IssueStatus.BACKLOG;
+    private IssueStatus status;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private IssuePriority priority = IssuePriority.MEDIUM;
+    private IssuePriority priority;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "assignee_id")

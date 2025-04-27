@@ -24,4 +24,6 @@ public interface IssueRepository extends JpaRepository<Issue, Long> {
             @Param("projectName") String projectName,
             @Param("status") IssueStatus status
     );
+
+    void deleteIssueById(Long id);
 }
