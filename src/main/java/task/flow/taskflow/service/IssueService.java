@@ -10,7 +10,7 @@ public interface IssueService {
                       IssuePriority priority, String assign_email, String report_email);
     Issue updateIssue(Long id, Issue issue);
     void deleteIssue(Long id);
-    List<Issue> getProjectIssues(Long projectId);
+    List<Issue> getProjectIssues(String project_name);
     List<Issue> getMemberAssignedIssues(Long memberId);
     List<Issue> findByProjectNameAndStatus(String projectName, IssueStatus status);
     List<Issue> findByAssigneeEmail(String email);

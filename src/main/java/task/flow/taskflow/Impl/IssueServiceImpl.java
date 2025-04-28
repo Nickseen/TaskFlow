@@ -16,7 +16,6 @@ import task.flow.taskflow.service.IssueService;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -86,9 +85,8 @@ public class IssueServiceImpl implements IssueService {
     }
 
     @Override
-    public List<Issue> getProjectIssues(Long projectId) {
-        Project project = projectRepository.findById(projectId)
-                .orElseThrow(() -> new EntityNotFoundException("Project not found with id: " + projectId));
+    public List<Issue> getProjectIssues(String project_name) {
+        Project project = projectRepository.findByName(project_name);
 
         return project.getIssues().stream().toList();
     }

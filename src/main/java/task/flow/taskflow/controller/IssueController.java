@@ -6,12 +6,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import task.flow.taskflow.dto.IssueCreateRequest;
 import task.flow.taskflow.model.Issue;
-import task.flow.taskflow.model.enums.IssuePriority;
 import task.flow.taskflow.model.enums.IssueStatus;
 import task.flow.taskflow.service.IssueService;
 
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/api/v1/issues")
@@ -49,9 +47,9 @@ public class IssueController {
         issueService.deleteIssue(id);
     }
 
-    @GetMapping("/project/{projectId}")
-    public List<Issue> getProjectIssues(@PathVariable Long projectId) {
-        return issueService.getProjectIssues(projectId);
+    @GetMapping("/project/{projectName}")
+    public List<Issue> getProjectIssues(@PathVariable String projectName) {
+        return issueService.getProjectIssues(projectName);
     }
 
     @GetMapping("/assignee/{memberId}")
