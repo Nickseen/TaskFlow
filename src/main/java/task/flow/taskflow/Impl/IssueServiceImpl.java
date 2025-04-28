@@ -31,12 +31,12 @@ public class IssueServiceImpl implements IssueService {
 
     @Override
     @Transactional
-    public Issue createIssue(Issue issue) {
-        Project project = projectRepository.findById(issue.getProject().getId())
-                .orElseThrow(() -> new EntityNotFoundException("Project not found"));
-
-        Member reporter = memberRepository.findById(issue.getReporter().getId())
-                .orElseThrow(() -> new EntityNotFoundException("Reporter not found"));
+    public Issue createIssue(String project_name, String title, String description, IssueStatus status,
+                             IssuePriority priority, String assign_email, String report_email) {
+        Issue issue = new Issue();
+        Project project = projectRepository.findByName(project_name);
+        Member assignee = memberRepository.findByProjectNameAndParticipantEmail(project_name, assign_email);
+        Member reporter = memberRepository.findByProjectNameAndParticipantEmail(project_name, report_email);
 
         if (issue.getStatus() == null) {
             issue.setStatus(IssueStatus.BACKLOG);
@@ -47,6 +47,15 @@ public class IssueServiceImpl implements IssueService {
         }
 
         LocalDateTime now = LocalDateTime.now();
+        issue.setProject(project);
+        issue.setTitle(title);
+        issue.setDescription(description);
+        issue.setStatus(status);
+        issue.setPriority(priority);
+        issue.setAssignee(assignee);
+        if (reporter != null) {
+            issue.setReporter(reporter);
+        }
         issue.setCreatedAt(now);
         issue.setUpdatedAt(now);
 

@@ -6,7 +6,8 @@ import task.flow.taskflow.model.enums.IssueStatus;
 import java.util.List;
 
 public interface IssueService {
-    Issue createIssue(Issue issue);
+    Issue createIssue(String project_name, String title, String description, IssueStatus status,
+                      IssuePriority priority, String assign_email, String report_email);
     Issue updateIssue(Long id, Issue issue);
     void deleteIssue(Long id);
     List<Issue> getProjectIssues(Long projectId);
