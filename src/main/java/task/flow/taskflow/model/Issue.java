@@ -20,7 +20,7 @@ public class Issue {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "project_id", nullable = false)
     @JsonIgnore
     private Project project;
@@ -39,12 +39,12 @@ public class Issue {
     @Column(nullable = false)
     private IssuePriority priority;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "assignee_id")
     @JsonIgnore
     private Member assignee;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "reporter_id", nullable = false)
     @JsonIgnore
     private Member reporter;

@@ -11,4 +11,8 @@ public interface IssueService {
     void deleteIssue(Long id);
     List<Issue> getProjectIssues(Long projectId);
     List<Issue> getMemberAssignedIssues(Long memberId);
+    List<Issue> findByProjectNameAndStatus(String projectName, IssueStatus status);
+    List<Issue> findByAssigneeEmail(String email);
+    List<Issue> findByReporterEmail(String email);
+
 }

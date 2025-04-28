@@ -73,7 +73,7 @@ public class IssueServiceImpl implements IssueService {
     @Override
     @Transactional
     public void deleteIssue(Long id) {
-        repository.deleteById(id);
+        repository.deleteIssueById(id);
     }
 
     @Override
@@ -91,4 +91,20 @@ public class IssueServiceImpl implements IssueService {
 
         return member.getIssues().stream().toList();
     }
+
+    @Override
+    public List<Issue> findByProjectNameAndStatus(String projectName, IssueStatus status) {
+        return repository.findByProjectNameAndStatus(projectName, status);
+    }
+
+    @Override
+    public List<Issue> findByAssigneeEmail(String email) {
+        return repository.findByAssigneeEmail(email);
+    }
+
+    @Override
+    public List<Issue> findByReporterEmail(String email) {
+        return repository.findByReporterEmail(email);
+    }
 }
+    
