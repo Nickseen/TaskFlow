@@ -10,6 +10,9 @@ import java.util.List;
 
 public interface IssueRepository extends JpaRepository<Issue, Long> {
 
+    @Query("SELECT i FROM Issue i JOIN i.project p WHERE p.name = :projectName")
+    List<Issue> findByProjectName(@Param("projectName") String projectName);
+
     @Query("SELECT i FROM Issue i JOIN i.assignee a JOIN a.participant p WHERE p.email = :email")
     List<Issue> findByAssigneeEmail(@Param("email") String email);
 

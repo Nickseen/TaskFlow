@@ -47,15 +47,6 @@ public class IssueController {
         issueService.deleteIssue(id);
     }
 
-    @GetMapping("/project/{projectName}")
-    public List<Issue> getProjectIssues(@PathVariable String projectName) {
-        return issueService.getProjectIssues(projectName);
-    }
-
-    @GetMapping("/assignee/{memberId}")
-    public List<Issue> getMemberAssignedIssues(@PathVariable Long memberId) {
-        return issueService.getMemberAssignedIssues(memberId);
-    }
 
     @GetMapping("/project/{projectName}/status/{status}")
     public List<Issue> findByProjectNameAndStatus(

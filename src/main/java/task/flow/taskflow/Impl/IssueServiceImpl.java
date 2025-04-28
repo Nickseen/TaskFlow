@@ -86,17 +86,7 @@ public class IssueServiceImpl implements IssueService {
 
     @Override
     public List<Issue> getProjectIssues(String project_name) {
-        Project project = projectRepository.findByName(project_name);
-
-        return project.getIssues().stream().toList();
-    }
-
-    @Override
-    public List<Issue> getMemberAssignedIssues(Long memberId) {
-        Member member = memberRepository.findById(memberId)
-                .orElseThrow(() -> new EntityNotFoundException("Member not found with id: " + memberId));
-
-        return member.getIssues().stream().toList();
+        return repository.findByProjectName(project_name);
     }
 
     @Override
