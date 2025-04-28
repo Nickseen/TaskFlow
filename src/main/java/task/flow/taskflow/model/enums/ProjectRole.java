@@ -1,4 +1,4 @@
-package task.flow.taskflow.model;
+package task.flow.taskflow.model.enums;
 
 public enum ProjectRole {
     OWNER,

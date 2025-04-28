@@ -1,7 +1,7 @@
 package task.flow.taskflow.dto;
 
 import lombok.Data;
-import task.flow.taskflow.model.ProjectRole;
+import task.flow.taskflow.model.enums.ProjectRole;
 
 @Data
 public class MemberDTO {

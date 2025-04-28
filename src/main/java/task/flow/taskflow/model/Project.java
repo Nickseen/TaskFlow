@@ -30,4 +30,8 @@ public class Project {
 
     @Transient
     private transient String password;
+
+    @OneToMany(mappedBy = "project")
+    @JsonIgnore
+    private Set<Issue> issues = new HashSet<>();
 }

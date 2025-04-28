@@ -1,21 +1,17 @@
 package task.flow.taskflow.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
 import task.flow.taskflow.dto.ProjectDTO;
+import task.flow.taskflow.model.Issue;
 import task.flow.taskflow.model.Member;
 import task.flow.taskflow.model.Project;
+import task.flow.taskflow.service.IssueService;
 import task.flow.taskflow.service.MemberService;
 import task.flow.taskflow.service.ProjectService;
 import task.flow.taskflow.utility.ProjectMapper;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 @RestController
@@ -23,6 +19,7 @@ import java.util.stream.Collectors;
 public class ProjectController {
     private final ProjectService service;
     private final MemberService memberService;
+    private final IssueService issueService;
     private final ProjectMapper projectMapper;
 
     @GetMapping
@@ -30,16 +27,18 @@ public class ProjectController {
         return service.findAllProjects().stream()
                 .map(project -> {
                     List<Member> members = memberService.findMembersByProjectName(project.getName());
-                    return projectMapper.toProjectDTO(project, members);
+                    List<Issue> issues = issueService.getProjectIssues(project.getName());
+                    return projectMapper.toProjectDTO(project, members, issues);
                 })
                 .collect(Collectors.toList());
     }
 
-
     @Autowired
-    public ProjectController(ProjectService service, MemberService memberService, ProjectMapper projectMapper) {
+    public ProjectController(ProjectService service, MemberService memberService,
+                             IssueService issueSevice, ProjectMapper projectMapper) {
         this.service = service;
         this.memberService = memberService;
+        this.issueService = issueSevice;
         this.projectMapper = projectMapper;
     }
 

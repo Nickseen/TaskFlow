@@ -1,7 +1,7 @@
 package task.flow.taskflow.service;
 
 import task.flow.taskflow.model.Member;
-import task.flow.taskflow.model.ProjectRole;
+import task.flow.taskflow.model.enums.ProjectRole;
 
 import java.util.List;
 

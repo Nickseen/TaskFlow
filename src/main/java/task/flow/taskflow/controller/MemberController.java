@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import task.flow.taskflow.model.Member;
-import task.flow.taskflow.model.ProjectRole;
+import task.flow.taskflow.model.enums.ProjectRole;
 import task.flow.taskflow.service.MemberService;
 
 import java.util.List;

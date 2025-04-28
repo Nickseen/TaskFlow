@@ -1,13 +1,12 @@
 package task.flow.taskflow.Impl;
 
-import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import task.flow.taskflow.model.Member;
 import task.flow.taskflow.model.Participant;
 import task.flow.taskflow.model.Project;
-import task.flow.taskflow.model.ProjectRole;
+import task.flow.taskflow.model.enums.ProjectRole;
 import task.flow.taskflow.repository.MemberRepository;
 import task.flow.taskflow.repository.ParticipantRepository;
 import task.flow.taskflow.repository.ProjectRepository;
