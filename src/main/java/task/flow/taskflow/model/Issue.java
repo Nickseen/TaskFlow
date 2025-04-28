@@ -41,12 +41,10 @@ public class Issue {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "assignee_id")
-    @JsonIgnore
     private Member assignee;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "reporter_id", nullable = false)
-    @JsonIgnore
     private Member reporter;
 
     @Column(name = "created_at", updatable = false)
